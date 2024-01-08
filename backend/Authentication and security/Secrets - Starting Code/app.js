@@ -194,7 +194,22 @@ app.post("/login",async(req,res)=>{
         }
 });
 
-
+app.get('/secrets', function(req, resp) {
+    if (req.isAuthenticated()) {
+      User.find({
+        secret: { $ne: null }
+      }, function(err, foundUsers) {
+        if (err) {
+          console.log(`No secrets found:\n${err}`);
+        }
+        resp.render('secrets', { usersWithSecrets: foundUsers || [] });
+      });
+    } else {
+      resp.render('login', {
+        errorMsg: 'You must be logged in to view the secret'
+      });
+    }
+  });
 app.listen(port,()=>{
     console.log(`Server is running at http://localhost:${port}`)
 });
