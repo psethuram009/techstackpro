@@ -30,26 +30,29 @@ function App() {
 
 
         setContact(prevName=>{
-            if (name ==="fName"){
-                return{
-                    fName : value,
-                    lName : prevName.lName,
-                    email : prevName.email
-                }
-            }else if (name === "lName"){
-                return{
-                    fName : prevName.fName,
-                    lName : value,
-                    email : prevName.email
-                }
-            } else if (name === "email"){
-              return {
-                    fName : prevName.fName,
-                    lName : prevName.lName,
-                    email : value
+          return {...prevName,[name]:value}
+            // this can be written useing spread operator or as below
 
-              }
-            }
+            // if (name ==="fName"){
+            //     return{
+            //         fName : value,
+            //         lName : prevName.lName,
+            //         email : prevName.email
+            //     }
+            // }else if (name === "lName"){
+            //     return{
+            //         fName : prevName.fName,
+            //         lName : value,
+            //         email : prevName.email
+            //     }
+            // } else if (name === "email"){
+            //   return {
+            //         fName : prevName.fName,
+            //         lName : prevName.lName,
+            //         email : value
+
+            //   }
+            // }
         })
     }
 
